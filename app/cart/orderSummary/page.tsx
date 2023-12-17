@@ -1,6 +1,6 @@
 "use client";
 
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import CartList from "@/components/CartList";
 import { AllFoodContext } from "@/context/allFoodContext";
 

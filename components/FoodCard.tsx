@@ -68,7 +68,7 @@ const FoodCard = ({
             onClick={() => setSelectedSize("large")}
           />
         </div>
-        <div className="flex gap-2 items-center mb-4">
+        <div className="flex gap-6 items-center mb-4">
           <Button
             icon={<FaPlus />}
             backgroundColor="primaryBackground"

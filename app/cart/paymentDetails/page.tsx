@@ -5,47 +5,42 @@ import { useRouter } from "next/navigation";
 import Form from "@/components/Form";
 
 interface FormData {
-  fullName: string;
-  contactNumber: string;
-  addressLine1: string;
-  state: string;
-  PinCode: string;
+  cardNumber: string;
+  expiryDate: string;
+  cvv: string;
+  cardHolderName: string;
 }
 
 interface Errors {
-  fullName: string;
-  contactNumber: string;
-  addressLine1: string;
-  state: string;
-  PinCode: string;
+  cardNumber: string;
+  expiryDate: string;
+  cvv: string;
+  cardHolderName: string;
 }
 
 const AddressDetails = () => {
   const router = useRouter();
   const [formData, setFormData] = useState<FormData>({
-    fullName: "",
-    contactNumber: "",
-    addressLine1: "",
-    state: "",
-    PinCode: "",
+    cardNumber: "",
+    expiryDate: "",
+    cvv: "",
+    cardHolderName: "",
   });
 
   const [errors, setErrors] = useState<Errors>({
-    fullName: "",
-    contactNumber: "",
-    addressLine1: "",
-    state: "",
-    PinCode: "",
+    cardNumber: "",
+    expiryDate: "",
+    cvv: "",
+    cardHolderName: "",
   });
 
   const validateForm = () => {
     let valid = true;
     const newErrors: Errors = {
-      fullName: "",
-      contactNumber: "",
-      addressLine1: "",
-      state: "",
-      PinCode: "",
+      cardNumber: "",
+      expiryDate: "",
+      cvv: "",
+      cardHolderName: "",
     };
 
     // Validate required fields
@@ -56,16 +51,20 @@ const AddressDetails = () => {
       }
     });
 
-    // Validate contactNumber
-    if (!/^\d{10}$/.test(formData.contactNumber)) {
-      newErrors.contactNumber = "Contact number must be 10 digits";
-      valid = false;
+    if (formData.cardNumber.trim() === "") {
+      newErrors.cardNumber = "Card number is required";
     }
 
-    // Validate pinCode
-    if (!/^\d{6}$/.test(formData.PinCode)) {
-      newErrors.PinCode = "PinCode must be 6 digits";
-      valid = false;
+    if (formData.expiryDate.trim() === "") {
+      newErrors.expiryDate = "Expiry date is required";
+    }
+
+    if (formData.cvv.trim() === "") {
+      newErrors.cvv = "CVV is required";
+    }
+
+    if (formData.cardHolderName.trim() === "") {
+      newErrors.cardHolderName = "Cardholder name is required";
     }
 
     setErrors(newErrors);
@@ -76,7 +75,8 @@ const AddressDetails = () => {
     e.preventDefault();
 
     if (validateForm()) {
-      router.push("/cart/orderSummary");
+      router.push("/allFood");
+      alert("Payment Successful");
     } else {
       alert("Form has errors. Cannot submit.");
     }
