@@ -1,6 +1,7 @@
 import { MdDelete } from "react-icons/md";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import { motion } from "framer-motion";
 import Button from "./Button";
 
 interface IFoodListProps {
@@ -32,7 +33,16 @@ export default function CartList({
 }: TCartProps) {
   const router = useRouter();
   return (
-    <div className="flex flex-col justify-center items-center gap-8 ">
+    <motion.div
+      variants={{
+        hidden: { opacity: 0, y: 75 },
+        visible: { opacity: 1, y: 0 },
+      }}
+      initial="hidden"
+      animate="visible"
+      transition={{ duration: 0.5, delay: 0.25 }}
+      className="flex flex-col justify-center items-center gap-8 "
+    >
       {isOrderSummary && (
         <h1 className="text-2xl font-semibold mb-4">Order Summary</h1>
       )}
@@ -108,6 +118,6 @@ export default function CartList({
           Cart is Empty!! &#9785;
         </h2>
       )}
-    </div>
+    </motion.div>
   );
 }

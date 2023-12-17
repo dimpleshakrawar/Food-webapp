@@ -1,6 +1,7 @@
 "use client";
 
 import Input from "./Input";
+import { motion } from "framer-motion";
 
 interface AddressFormData {
   fullName: string;
@@ -46,7 +47,16 @@ const Form = ({ formData, errors, handleSubmit, setFormData }: TProps) => {
   };
 
   return (
-    <div className="shadow-md p-2">
+    <motion.div
+      variants={{
+        hidden: { opacity: 0, y: 75 },
+        visible: { opacity: 1, y: 0 },
+      }}
+      initial="hidden"
+      animate="visible"
+      transition={{ duration: 0.5, delay: 0.25 }}
+      className="shadow-md p-2"
+    >
       <h1 className="text-2xl font-semibold mb-4">Address Details</h1>
       <form onSubmit={handleSubmit}>
         {Object.entries(formData).map(([key, value]) => (
@@ -81,7 +91,7 @@ const Form = ({ formData, errors, handleSubmit, setFormData }: TProps) => {
           </button>
         </div>
       </form>
-    </div>
+    </motion.div>
   );
 };
 
