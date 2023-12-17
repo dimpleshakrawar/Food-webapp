@@ -15,7 +15,7 @@ const Header = () => {
 
   return (
     <div className="bg-primaryBackground shadow-xl fixed top-0 left-0 w-full h-16">
-      <div className="flex max-sm:px-1 md:px-8 py-3 justify-between items-center gap-2">
+      <div className="flex max-sm:px-1 md:px-8 py-3 justify-center items-center gap-2">
         <div className="flex" onClick={() => router.push("/allFood")}>
           <Image
             src={Logo}
@@ -25,16 +25,6 @@ const Header = () => {
             width={40}
             layout="intrinsic"
           />
-        </div>
-
-        <div className="flex relative">
-          <input
-            placeholder="Search by Category"
-            className="h-10 md:w-[30rem] rounded-2xl p-2 outline-none text-black font-satoshi font-sm placeholder-slate-400 focus:ring-gray-500 focus:ring-2"
-          />
-          <button className="absolute top-2 right-2">
-            <IoSearch size={22} color={"black"} />
-          </button>
         </div>
         <div className=" relative py-2 px-2 text-white hover:bg-red-700 hover:text-white rounded-xl">
           <button
