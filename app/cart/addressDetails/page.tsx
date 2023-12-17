@@ -85,6 +85,7 @@ const AddressDetails = () => {
   return (
     <div className="flex justify-center p-2">
       <Form
+        header={"Address Details"}
         formData={formData}
         setFormData={setFormData}
         handleSubmit={handleSubmit}

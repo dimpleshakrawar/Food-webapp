@@ -38,9 +38,16 @@ type TProps = {
   errors: AddressErrors | PaymentErrors;
   handleSubmit: (e: React.FormEvent) => void;
   setFormData: (data: any) => void;
+  header: string;
 };
 
-const Form = ({ formData, errors, handleSubmit, setFormData }: TProps) => {
+const Form = ({
+  formData,
+  errors,
+  handleSubmit,
+  setFormData,
+  header,
+}: TProps) => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormData((prev: any) => ({ ...prev, [name]: value }));
@@ -57,7 +64,7 @@ const Form = ({ formData, errors, handleSubmit, setFormData }: TProps) => {
       transition={{ duration: 0.5, delay: 0.25 }}
       className="shadow-md p-2"
     >
-      <h1 className="text-2xl font-semibold mb-4">Address Details</h1>
+      <h1 className="text-2xl font-semibold mb-4">{header}</h1>
       <form onSubmit={handleSubmit}>
         {Object.entries(formData).map(([key, value]) => (
           <div key={key} className="mb-2">
