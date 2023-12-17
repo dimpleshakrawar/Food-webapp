@@ -1,5 +1,6 @@
 import { MdDelete } from "react-icons/md";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import Button from "./Button";
 
 interface IFoodListProps {
@@ -20,15 +21,21 @@ type TCartProps = {
   cartFoodItems: ICartItem[] | undefined;
   totalPrice: number | 0;
   deleteFoodHandler: (id: number) => void;
+  isOrderSummary?: boolean;
 };
 
 export default function CartList({
   cartFoodItems,
   totalPrice,
   deleteFoodHandler,
+  isOrderSummary,
 }: TCartProps) {
+  const router = useRouter();
   return (
-    <div className="flex flex-col justify-center items-center gap-8 md:m-[6rem] p-4 ">
+    <div className="flex flex-col justify-center items-center gap-8 ">
+      {isOrderSummary && (
+        <h1 className="text-2xl font-semibold mb-4">Order Summary</h1>
+      )}
       {cartFoodItems?.length ? (
         <>
           {cartFoodItems?.map((data: any) => (
@@ -76,13 +83,25 @@ export default function CartList({
               $ {totalPrice}
             </span>
           </div>
-          <Button
-            label="Proceed to Payment"
-            backgroundColor="primaryBackground"
-            text="primaryBackground"
-            hoverColor="hoverBackground"
-            hoverText="white"
-          />
+          {isOrderSummary ? (
+            <Button
+              label="Continue"
+              backgroundColor="primaryBackground"
+              text="primaryBackground"
+              hoverColor="hoverBackground"
+              hoverText="white"
+              onClick={() => router.push("/cart/paymentDetails")}
+            />
+          ) : (
+            <Button
+              label="Proceed to Payment"
+              backgroundColor="primaryBackground"
+              text="primaryBackground"
+              hoverColor="hoverBackground"
+              hoverText="white"
+              onClick={() => router.push("/cart/addressDetails")}
+            />
+          )}
         </>
       ) : (
         <h2 className="text-3xl text-gray-400 text-center">
