@@ -2,6 +2,7 @@ import Image from "next/image";
 import { FaPlus } from "react-icons/fa6";
 import { FiMinus } from "react-icons/fi";
 import Button from "@/components/Button";
+import { motion } from "framer-motion";
 
 interface IFoodListProps {
   id: number;
@@ -28,7 +29,16 @@ const FoodCard = ({
   setSelectedSize,
 }: IOneFoodProps) => {
   return (
-    <div className=" md:m-[6rem] p-4 flex gap-12 max-sm:gap-2">
+    <motion.div
+      variants={{
+        hidden: { opacity: 0, y: 75 },
+        visible: { opacity: 1, y: 0 },
+      }}
+      initial="hidden"
+      animate="visible"
+      transition={{ duration: 0.5, delay: 0.25 }}
+      className=" md:m-[6rem] p-4 flex gap-12 max-sm:gap-2"
+    >
       <div className="max-sm:h-[9rem]">
         <Image
           src={oneFoodData?.image as string}
@@ -68,7 +78,7 @@ const FoodCard = ({
             onClick={() => setSelectedSize("large")}
           />
         </div>
-        <div className="flex gap-2 items-center mb-4">
+        <div className="flex gap-6 items-center mb-4">
           <Button
             icon={<FaPlus />}
             backgroundColor="primaryBackground"
@@ -96,7 +106,7 @@ const FoodCard = ({
           onClick={submitHandler}
         />
       </div>
-    </div>
+    </motion.div>
   );
 };
 

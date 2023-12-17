@@ -3,6 +3,7 @@
 import { useContext } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
+import { motion } from "framer-motion";
 import { AllFoodContext } from "@/context/allFoodContext";
 
 const AllFood = () => {
@@ -20,7 +21,16 @@ const AllFood = () => {
   };
 
   return (
-    <div className="p-6">
+    <motion.div
+      variants={{
+        hidden: { opacity: 0, y: 75 },
+        visible: { opacity: 1, y: 0 },
+      }}
+      initial="hidden"
+      animate="visible"
+      transition={{ duration: 0.5, delay: 0.25 }}
+      className="p-6"
+    >
       <h2 className="text-3xl font-semibold text-slate-600">
         Menu that Always makes you Fall in Love
       </h2>
@@ -49,7 +59,7 @@ const AllFood = () => {
           </div>
         ))}
       </div>
-    </div>
+    </motion.div>
   );
 };
 

@@ -27,6 +27,8 @@ const OneFood = () => {
       };
 
       addToCartHandler(cartItem);
+    } else {
+      alert("Quantity and Size are required");
     }
   };
   return (

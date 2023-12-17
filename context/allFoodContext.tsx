@@ -30,6 +30,7 @@ type TContext = {
   addToCartHandler: (data: any) => void;
   cartFoodItems: ICartItem[] | undefined;
   totalPrice: number;
+  deleteFoodHandler: (id: number) => void;
 };
 
 export const AllFoodContext = createContext<TContext | null>(null);
@@ -60,6 +61,11 @@ const FoodDataProvider = ({ children }: TFoodDataProviderProp) => {
     });
   };
 
+  const deleteFoodHandler = (id: number) => {
+    const filterData = cartFoodItems.filter((data) => data.id !== id);
+    setCartFoodItems(filterData);
+  };
+
   useEffect(() => {
     const totalPrice = (cartFoodItems || []).reduce(
       (acc, item) => acc + item.total,
@@ -77,6 +83,7 @@ const FoodDataProvider = ({ children }: TFoodDataProviderProp) => {
         addToCartHandler,
         cartFoodItems,
         totalPrice,
+        deleteFoodHandler,
       }}
     >
       {children}

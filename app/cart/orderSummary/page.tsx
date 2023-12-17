@@ -4,19 +4,22 @@ import { useContext } from "react";
 import CartList from "@/components/CartList";
 import { AllFoodContext } from "@/context/allFoodContext";
 
-const Cart = () => {
+const OrderSummary = () => {
+  const isOrderSummary = true;
   const context = useContext(AllFoodContext);
   if (!context) return null;
 
   const { cartFoodItems, totalPrice, deleteFoodHandler } = context;
   return (
-    <div className=" md:m-[6rem] p-4">
+    <div className="flex justify-center p-2">
       <CartList
         cartFoodItems={cartFoodItems}
         totalPrice={totalPrice}
         deleteFoodHandler={deleteFoodHandler}
+        isOrderSummary={isOrderSummary}
       />
     </div>
   );
 };
-export default Cart;
+
+export default OrderSummary;
