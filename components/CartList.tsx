@@ -1,3 +1,4 @@
+import { MdDelete } from "react-icons/md";
 import Image from "next/image";
 import Button from "./Button";
 
@@ -18,9 +19,14 @@ interface ICartItem extends IFoodListProps {
 type TCartProps = {
   cartFoodItems: ICartItem[] | undefined;
   totalPrice: number | 0;
+  deleteFoodHandler: (id: number) => void;
 };
 
-export default function CartList({ cartFoodItems, totalPrice }: TCartProps) {
+export default function CartList({
+  cartFoodItems,
+  totalPrice,
+  deleteFoodHandler,
+}: TCartProps) {
   return (
     <div className="flex flex-col justify-center items-center gap-8 md:m-[6rem] p-4 ">
       {cartFoodItems?.length ? (
@@ -28,7 +34,7 @@ export default function CartList({ cartFoodItems, totalPrice }: TCartProps) {
           {cartFoodItems?.map((data: any) => (
             <div
               key={data.id}
-              className="flex gap-2 w-[27rem] p-2 border-2 border-gray-300"
+              className="flex gap-2 w-[27rem] max-sm:w-[19rem] p-2 border-2 border-gray-300"
             >
               <div className="w-[6rem] h-[6rem]">
                 <Image
@@ -57,7 +63,9 @@ export default function CartList({ cartFoodItems, totalPrice }: TCartProps) {
                 <hr className=" bg-slate-500" />
                 <div className="flex justify-between">
                   <h2 className="font-semibold">Total- ${data.total}</h2>
-                  <button>Delete</button>
+                  <button onClick={() => deleteFoodHandler(data.id)}>
+                    <MdDelete size={20} color={"red"} />
+                  </button>
                 </div>
               </div>
             </div>

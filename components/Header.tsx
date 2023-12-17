@@ -16,7 +16,7 @@ const Header = () => {
   return (
     <div className="bg-primaryBackground shadow-xl fixed top-0 left-0 w-full h-16">
       <div className="flex max-sm:px-1 md:px-8 py-3 justify-between items-center gap-2">
-        <div className="flex" onClick={() => router.push("/")}>
+        <div className="flex" onClick={() => router.push("/allFood")}>
           <Image
             src={Logo}
             alt="Logo"

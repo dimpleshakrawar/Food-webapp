@@ -8,10 +8,14 @@ const Cart = () => {
   const context = useContext(AllFoodContext);
   if (!context) return null;
 
-  const { cartFoodItems, totalPrice } = context;
+  const { cartFoodItems, totalPrice, deleteFoodHandler } = context;
   return (
     <div>
-      <CartList cartFoodItems={cartFoodItems} totalPrice={totalPrice} />
+      <CartList
+        cartFoodItems={cartFoodItems}
+        totalPrice={totalPrice}
+        deleteFoodHandler={deleteFoodHandler}
+      />
     </div>
   );
 };
